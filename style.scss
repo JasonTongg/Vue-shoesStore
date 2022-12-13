@@ -1,0 +1,267 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primaryColor: #ffffff;
+  --secondaryColor: #c96030;
+}
+
+body {
+  position: relative;
+}
+
+section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  display: none;
+
+  &.display {
+    display: flex;
+  }
+
+  .modal {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+
+    img {
+      width: 400px;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .order {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+
+      h2 {
+        font-size: 2rem;
+        color: var(--secondaryColor);
+      }
+
+      h3:first-of-type {
+        text-decoration: line-through;
+      }
+
+      h3:last-of-type {
+        font-size: 1.3rem;
+      }
+    }
+
+    .inputContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+
+      &:first-of-type {
+        margin-top: 1rem;
+      }
+
+      &:last-of-type {
+        margin-bottom: 1rem;
+      }
+
+      label {
+        color: var(--secondaryColor);
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+
+      input {
+        text-align: center;
+      }
+
+      .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        input {
+          width: 30px;
+
+          &::-webkit-outer-spin-button,
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
+
+        button {
+          font-size: 1rem;
+          padding: 0.1rem 0.4rem;
+        }
+      }
+    }
+
+    .size {
+      padding: 0.2rem 1rem;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      margin-top: 1rem;
+    }
+
+    .inputButton {
+      width: 200px;
+      padding: 0.5rem 1rem;
+      background-color: var(--secondaryColor);
+      color: white;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+}
+
+header {
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 5rem;
+    background-color: rgba(0, 0, 0, 0.1);
+
+    h2 {
+      font-size: 2rem;
+
+      span {
+        color: var(--secondaryColor);
+      }
+    }
+
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      list-style: none;
+
+      li {
+        font-size: 1.2rem;
+
+        &:last-of-type {
+          background-color: var(--secondaryColor);
+          padding: 0.5rem 1rem;
+          border-radius: 100px;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+main {
+  padding: 2rem 5rem;
+  text-align: center;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    span {
+      color: var(--secondaryColor);
+    }
+  }
+
+  .productItems {
+    display: grid;
+    width: 100%;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+    .item {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.3);
+
+      img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      h3:first-of-type {
+        text-decoration: line-through;
+      }
+
+      h3:last-of-type {
+        font-size: 1.4rem;
+      }
+
+      button {
+        background-color: var(--secondaryColor);
+        color: white;
+        border: none;
+        outline: none;
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem 5rem;
+  background-color: var(--secondaryColor);
+  color: white;
+
+  .list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+    ul {
+      list-style: none;
+      text-align: center;
+
+      li {
+        &:first-of-type {
+          font-size: 1.2rem;
+          font-weight: bold;
+        }
+
+        &:not(:last-of-type) {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+    span {
+      font-weight: bold;
+    }
+  }
+}

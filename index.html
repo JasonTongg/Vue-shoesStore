@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+    <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Car Rental</title>
+  </head>
+  <body id="wrapper">
+    <section class="overlay">
+      <div class="modal">
+        <img :src="details.img" :alt="details.name" />
+        <div class="order">
+          <h2>{{details.name}}</h2>
+          <h3>{{details.priceThrough}}</h3>
+          <h3>Rp. {{details.price}},-</h3>
+          <div class="inputContainer">
+            <label for="size">Choose Size</label>
+            <select id="size" v-on:change="changeSize($event)">
+              <option value="Pilih">Pilih</option>
+              <option v-for="ukuran in sizeList" :value="ukuran" :selected="ukuran === size">{{ukuran}}</option>
+            </select>
+          </div>
+          <div class="inputContainer">
+            <label>Quantity</label>
+            <div class="container">
+              <input type="button" value="+" v-on:click="incQty"/>
+              <input type="number" :value="qty"/>
+              <input type="button" value="-"v-on:click="decQty"/>
+            </div>
+          </div>
+          <p>if you can't find your size, please kindly input here:</p>
+          <input type="text" placeholder="e.g 45" class="size" v-on:click="changeSize($event)"/>
+          <div class="inputContainer">
+            <label>Packaging</label>
+            <input type="radio" name="pack" v-on:click="changePacking('Normal')">Normal</input>
+            <input type="radio" name="pack" v-on:click="changePacking('Bubble Wrap')">Bubble Wrap</input>
+            <input type="radio" name="pack" v-on:click="changePacking('Kotak Kayu')">Kotak Kayu</input>
+          </div>
+          <input type="button" value="Add to Cart" class="inputButton" v-on:click="addCart">
+          <input type="button" value="Buy Now!" class="inputButton">
+        </div>
+        <div class="info"></div>
+      </div>
+    </section>
+    <header>
+      <nav>
+        <h2>Shoes <span>Collections</span></h2>
+        <ul>
+          <li>Home</li>
+          <li>Collections</li>
+          <li>Brands</li>
+          <li>Sale</li>
+          <li>Cart({{cart.length}})</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <h2>Product <span>Sale</span></h2>
+      <div class="productItems">
+        <div class="item" v-for="shoe in shoes">
+          <img :src="shoe.img" alt="" />
+          <h2>{{shoe.name}}</h2>
+          <h3>{{shoe.priceThrough}}</h3>
+          <h3>Rp. {{shoe.price}},-</h3>
+          <button v-on:click="changeDetails(shoe.id)">Details</button>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="list">
+        <ul>
+          <li>Address</li>
+          <li>Jl. sudirman 32</li>
+          <li>brand@gmail.com</li>
+          <li>(021) 2552-xxxx</li>
+        </ul>
+        <ul>
+          <li>Collection</li>
+          <li>Sneakers</li>
+          <li>Shoes</li>
+          <li>Slip on</li>
+          <li>Boots</li>
+        </ul>
+        <ul>
+          <li>Pages</li>
+          <li>Home</li>
+          <li>Collections</li>
+          <li>Brands</li>
+          <li>Sale</li>
+        </ul>
+      </div>
+      <p>Copyright &copy; 2022, Make with &hearts; by <span>Jason</span></p>
+    </footer>
+  </body>
+</html>
