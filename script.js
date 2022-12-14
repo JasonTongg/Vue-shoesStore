@@ -51,6 +51,20 @@ let vue = new Vue({
         img: './assets/shoes-7.jfif',
         id: 7,
       },
+      {
+        name: 'Green Jordan',
+        priceThrough: 'Rp. 8.000.000,-',
+        price: '3500000',
+        img: './assets/shoes-8.jfif',
+        id: 8,
+      },
+      {
+        name: 'Yellow Jordan',
+        priceThrough: 'Rp. 7.000.000,-',
+        price: '3500000',
+        img: './assets/shoes-9.jfif',
+        id: 9,
+      },
     ],
     details: {
       name: 'Red Jordan',
@@ -63,6 +77,9 @@ let vue = new Vue({
     packing: 'normal',
     size: 35,
     cart: [],
+    req: '',
+    total: 0,
+    totalQty: 0,
   },
   methods: {
     changeDetails(id) {
@@ -84,6 +101,9 @@ let vue = new Vue({
     changePacking(input) {
       this.packing = input;
     },
+    addReq(event) {
+      this.req = event.target.value;
+    },
     addCart() {
       this.cart.push({
         qty: this.qty,
@@ -91,19 +111,64 @@ let vue = new Vue({
         size: this.size,
         name: this.details.name,
         price: this.details.price,
+        req: this.req,
+        img: this.details.img,
+        id: +new Date(),
       });
-      console.log(this.cart);
+      this.total += +this.details.price * +this.qty;
+      this.totalQty += +this.qty;
+      this.resetValue();
+    },
+    removeCartItem(id) {
+      this.cart = this.cart.filter((item) => item.id !== id);
+    },
+    resetValue() {
+      this.qty = 1;
+      this.packing = 'normal';
+      this.size = 35;
+      this.req = '';
+    },
+    buyDetail() {
+      alert(
+        `Success buy ${this.qty} ${this.details.name}, total: Rp. ${this.details.price},-`
+      );
+      this.resetValue();
+    },
+    buyCart() {
+      alert(`Success buy ${this.totalQty} shoes, total: Rp. ${this.total},-`);
+      this.cart = [];
     },
   },
 });
 
 let overlay = document.querySelector('.overlay');
 let buttons = document.getElementsByTagName('button');
-console.log(overlay);
+let cartOverlay = document.querySelector('.cartOverlay');
+let cartButton = document.querySelector('.cartButton');
 
-// overlay.addEventListener('click', () => {
-//   overlay.classList.remove('display');
-// });
+cartOverlay.addEventListener('click', (e) => {
+  if (e.target === cartOverlay.closest('.cartOverlay')) {
+    cartOverlay.classList.remove('display');
+  }
+});
+
+cartButton.addEventListener('click', () => {
+  cartOverlay.classList.add('display');
+});
+
+let removeCart = () => {
+  cartOverlay.classList.remove('display');
+};
+
+let remove = () => {
+  overlay.classList.remove('display');
+};
+
+overlay.addEventListener('click', (e) => {
+  if (e.target === overlay.closest('.overlay')) {
+    overlay.classList.remove('display');
+  }
+});
 
 Array.from(buttons).forEach((item) =>
   item.addEventListener('click', () => {

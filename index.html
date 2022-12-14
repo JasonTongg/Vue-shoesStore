@@ -10,6 +10,28 @@
     <title>Car Rental</title>
   </head>
   <body id="wrapper">
+    <section class="cartOverlay">
+      <div class="cartList">
+        <h2 v-if="cart.length === 0">Cart is Empty</h2>
+        <div class="cart" v-else>
+          <h2>Cart <span>List</span></h2>
+          <div class="item" v-for="keranjang in cart">
+            <img :src="keranjang.img" :alt="keranjang.name">
+            <div class="itemInfo">
+              <h2>{{keranjang.name}}</h2>
+              <p>Size: {{keranjang.size}}</p>
+              <p>Jumlah: {{keranjang.qty}}</p>
+              <p>Packaging: {{keranjang.packing}}</p>
+              <p v-if="keranjang.req.length > 0">Note: {{keranjang.req}}</p>
+              <p>Rp. {{keranjang.price}},-</p>
+            </div>
+            <input type="button" value="hapus" v-on:click="removeCartItem(keranjang.id)">
+          </div>
+          <h2>Total: Rp. {{total}},-</h2>
+          <input type="button" value="Buy" v-on:click="buyCart" onClick="removeCart()">
+        </div>
+      </div>
+    </section>
     <section class="overlay">
       <div class="modal">
         <img :src="details.img" :alt="details.name" />
@@ -27,21 +49,21 @@
           <div class="inputContainer">
             <label>Quantity</label>
             <div class="container">
-              <input type="button" value="+" v-on:click="incQty"/>
-              <input type="number" :value="qty"/>
               <input type="button" value="-"v-on:click="decQty"/>
+              <input type="number" :value="qty"/>
+              <input type="button" value="+" v-on:click="incQty"/>
             </div>
           </div>
           <p>if you can't find your size, please kindly input here:</p>
-          <input type="text" placeholder="e.g 45" class="size" v-on:click="changeSize($event)"/>
+          <input :defaultValue="req" type="text" placeholder="e.g ...." class="size" v-on:change="addReq($event)"/>
           <div class="inputContainer">
             <label>Packaging</label>
-            <input type="radio" name="pack" v-on:click="changePacking('Normal')">Normal</input>
+            <input type="radio" name="pack" v-on:click="changePacking('Normal')" checked>Normal</input>
             <input type="radio" name="pack" v-on:click="changePacking('Bubble Wrap')">Bubble Wrap</input>
             <input type="radio" name="pack" v-on:click="changePacking('Kotak Kayu')">Kotak Kayu</input>
           </div>
-          <input type="button" value="Add to Cart" class="inputButton" v-on:click="addCart">
-          <input type="button" value="Buy Now!" class="inputButton">
+          <input type="button" value="Add to Cart" class="inputButton" v-on:click="addCart" onClick="remove()">
+          <input type="button" value="Buy Now!" class="inputButton" v-on:click="buyDetail" onClick="remove()">
         </div>
         <div class="info"></div>
       </div>
@@ -54,7 +76,7 @@
           <li>Collections</li>
           <li>Brands</li>
           <li>Sale</li>
-          <li>Cart({{cart.length}})</li>
+          <li class="cartButton">Cart({{totalQty}})</li>
         </ul>
       </nav>
     </header>

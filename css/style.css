@@ -14,7 +14,142 @@ body {
   position: relative;
 }
 
-section {
+.cartOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.cartOverlay.display {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.cartOverlay .cartList {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 20px;
+  max-height: calc(100vh - 100px);
+  overflow: auto;
+}
+
+.cartOverlay .cartList .cart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1rem;
+}
+
+.cartOverlay .cartList .cart h2:first-of-type {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.cartOverlay .cartList .cart h2:first-of-type span {
+  color: var(--secondaryColor);
+}
+
+.cartOverlay .cartList .cart h2:last-of-type {
+  font-size: 1.5rem;
+}
+
+.cartOverlay .cartList .cart .item {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 2fr 1fr;
+      grid-template-columns: 1fr 2fr 1fr;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 500px;
+  gap: 1rem;
+}
+
+.cartOverlay .cartList .cart .item img {
+  width: 150px;
+  height: 150px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.cartOverlay .cartList .cart .item .itemInfo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 0.5rem;
+}
+
+.cartOverlay .cartList .cart .item .itemInfo h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.cartOverlay .cartList .cart .item .itemInfo p:last-of-type {
+  font-size: 1rem;
+  color: var(--secondaryColor);
+  font-weight: bold;
+}
+
+.cartOverlay .cartList .cart .item input[type='button'] {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 0.5rem 1rem;
+  background-color: black;
+  color: white;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.cartOverlay .cartList .cart input[type='button'] {
+  padding: 0.5rem 1rem;
+  background-color: black;
+  width: 100%;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -30,13 +165,13 @@ section {
   display: none;
 }
 
-section.display {
+.overlay.display {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-section .modal {
+.overlay .modal {
   background-color: white;
   padding: 1.5rem;
   border-radius: 10px;
@@ -56,14 +191,14 @@ section .modal {
   gap: 1rem;
 }
 
-section .modal img {
+.overlay .modal img {
   width: 400px;
   height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
 }
 
-section .modal .order {
+.overlay .modal .order {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -80,20 +215,20 @@ section .modal .order {
   gap: 0.5rem;
 }
 
-section .modal .order h2 {
+.overlay .modal .order h2 {
   font-size: 2rem;
   color: var(--secondaryColor);
 }
 
-section .modal .order h3:first-of-type {
+.overlay .modal .order h3:first-of-type {
   text-decoration: line-through;
 }
 
-section .modal .order h3:last-of-type {
+.overlay .modal .order h3:last-of-type {
   font-size: 1.3rem;
 }
 
-section .modal .inputContainer {
+.overlay .modal .inputContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -106,25 +241,25 @@ section .modal .inputContainer {
   gap: 1rem;
 }
 
-section .modal .inputContainer:first-of-type {
+.overlay .modal .inputContainer:first-of-type {
   margin-top: 1rem;
 }
 
-section .modal .inputContainer:last-of-type {
+.overlay .modal .inputContainer:last-of-type {
   margin-bottom: 1rem;
 }
 
-section .modal .inputContainer label {
+.overlay .modal .inputContainer label {
   color: var(--secondaryColor);
   font-weight: bold;
   font-size: 1.2rem;
 }
 
-section .modal .inputContainer input {
+.overlay .modal .inputContainer input {
   text-align: center;
 }
 
-section .modal .inputContainer .container {
+.overlay .modal .inputContainer .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -136,30 +271,41 @@ section .modal .inputContainer .container {
           justify-content: center;
 }
 
-section .modal .inputContainer .container input {
+.overlay .modal .inputContainer .container input {
   width: 30px;
 }
 
-section .modal .inputContainer .container input::-webkit-outer-spin-button, section .modal .inputContainer .container input::-webkit-inner-spin-button {
+.overlay .modal .inputContainer .container input::-webkit-outer-spin-button, .overlay .modal .inputContainer .container input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-section .modal .inputContainer .container button {
-  font-size: 1rem;
-  padding: 0.1rem 0.4rem;
+.overlay .modal .inputContainer .container input[type='button'] {
+  color: white;
+  outline: none;
+  cursor: pointer;
 }
 
-section .modal .size {
+.overlay .modal .inputContainer .container input:first-of-type {
+  background-color: red;
+  border-color: red;
+}
+
+.overlay .modal .inputContainer .container input:last-of-type {
+  border-color: green;
+  background-color: green;
+}
+
+.overlay .modal .size {
   padding: 0.2rem 1rem;
   margin-bottom: 1rem;
 }
 
-section .modal p {
+.overlay .modal p {
   margin-top: 1rem;
 }
 
-section .modal .inputButton {
+.overlay .modal .inputButton {
   width: 200px;
   padding: 0.5rem 1rem;
   background-color: var(--secondaryColor);
@@ -207,6 +353,7 @@ header nav ul {
 
 header nav ul li {
   font-size: 1.2rem;
+  cursor: pointer !important;
 }
 
 header nav ul li:last-of-type {

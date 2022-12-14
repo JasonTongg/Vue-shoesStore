@@ -13,7 +13,106 @@ body {
   position: relative;
 }
 
-section {
+.cartOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  &.display {
+    display: flex;
+  }
+
+  .cartList {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    max-height: calc(100vh - 100px);
+    overflow: auto;
+
+    .cart {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+
+      h2:first-of-type {
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        span {
+          color: var(--secondaryColor);
+        }
+      }
+
+      h2:last-of-type {
+        font-size: 1.5rem;
+      }
+
+      .item {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        width: 500px;
+        gap: 1rem;
+
+        img {
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+        }
+
+        .itemInfo {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+          gap: 0.5rem;
+          h2 {
+            margin: 0;
+            font-size: 1.2rem;
+          }
+
+          p:last-of-type {
+            font-size: 1rem;
+            color: var(--secondaryColor);
+            font-weight: bold;
+          }
+        }
+
+        input[type='button'] {
+          height: fit-content;
+          padding: 0.5rem 1rem;
+          background-color: black;
+          color: white;
+          border: none;
+          outline: none;
+          cursor: pointer;
+        }
+      }
+
+      input[type='button'] {
+        padding: 0.5rem 1rem;
+        background-color: black;
+        width: 100%;
+        color: white;
+        border: none;
+        outline: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -102,11 +201,22 @@ section {
             -webkit-appearance: none;
             margin: 0;
           }
-        }
 
-        button {
-          font-size: 1rem;
-          padding: 0.1rem 0.4rem;
+          &[type='button'] {
+            color: white;
+            outline: none;
+            cursor: pointer;
+          }
+
+          &:first-of-type {
+            background-color: red;
+            border-color: red;
+          }
+
+          &:last-of-type {
+            border-color: green;
+            background-color: green;
+          }
         }
       }
     }
@@ -157,6 +267,7 @@ header {
 
       li {
         font-size: 1.2rem;
+        cursor: pointer !important;
 
         &:last-of-type {
           background-color: var(--secondaryColor);
