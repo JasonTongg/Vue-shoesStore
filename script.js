@@ -132,10 +132,12 @@ let vue = new Vue({
       alert(
         `Success buy ${this.qty} ${this.details.name}, total: Rp. ${this.details.price},-`
       );
+      window.location.href = `https://wa.me/6285311759600?text=Success%20buy%20${this.qty} ${this.details.name},%20total:%20Rp.%20${this.details.price},-`;
       this.resetValue();
     },
     buyCart() {
       alert(`Success buy ${this.totalQty} shoes, total: Rp. ${this.total},-`);
+      window.location.href = `https://wa.me/6285311759600?text=Success%20buy%20${this.totalQty}%20shoes,%20total:%20Rp.%20${this.total},-`;
       this.cart = [];
     },
   },
